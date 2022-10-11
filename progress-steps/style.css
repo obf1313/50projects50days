@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 :root {
+  /* 变量名前面要加两根连词线 -- */
   --line-border-fill: #3498db;
   --line-border-empty: #383838;
 }
@@ -36,6 +37,8 @@ body {
 .progress-container::before {
   content: '';
   /* 还可以这么写啊 */
+  /* 使用 var 函数读取变量 */
+  /* 还可以使用第二个参数，表示变量的默认值 */
   background-color: var(--line-border-empty);
   position: absolute;
   top: 50%;
