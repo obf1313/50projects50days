@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>css 选择器</title>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <h2>.class</h2>
+      <p>选择 class="intro" 的所有元素。</p>
+      <div class="intro">我的 class 为 intro</div>
+    </li>
+    <li>
+      <h2>.class1.class2</h2>
+      <p> 选择 class 属性中同时有 name1 和 name2 的所有元素。</p>
+      <div class="class1 class2">我同时有 class1 和 class2</div>
+    </li>
+    <li>
+      <h2>.class1 .class2</h2>
+      <p>选择作为类名 class1 元素后代的所有类名 class2 元素。</p>
+      <div class="class1">
+        <div class="class2">
+          我是 class1 的后代 class2
+        </div>
+      </div>
+    </li>
+    <li>
+      <h2>#id</h2>
+      <p>选择 id="first-name" 的元素。</p>
+      <div id="first-name">我的 id 是 first-name</div>
+    </li>
+    <li>
+      <h2>*</h2>
+      <p>选择所有元素。</p>
+      <div>你看所有元素的背景都变成了灰色</div>
+    </li>
+    <li>
+      <h2>element</h2>
+      <p>例子：li，选择所有 li 元素。</p>
+      <p>现在所有 li 元素没有 . 了</p>
+    </li>
+    <li>
+      <h2>element.class</h2>
+      <p>选择 class="intro" 的所有 p 元素。</p>
+      <p class="intro">我是 class="intro" 的 p 元素</p>
+    </li>
+    <li>
+      <h2>element,element</h2>
+      <p>选择所有 div 元素和所有 p 元素</p>
+      <div>我是 div</div>
+      <p>我是 p</p>
+    </li>
+    <li>
+      <h2>element element</h2>
+      <p>选择 div 元素内的所有 p 元素</p>
+      <div>
+        <h2>
+          <p>我是 div 内的 p 元素</p>
+        </h2>
+      </div>
+    </li>
+    <li>
+      <h2>element>element</h2>
+      <p>选择父元素是 div 的所有 p 元素。</p>
+      <div>
+        <p>我是 p，我的父元素是 div</p>
+      </div>
+    </li>
+    <li>
+      <h2>element1~element2</h2>
+      <p>p~ul 选择前面有 p 元素的每个 ul 元素。</p>
+      <p>我是 p 元素</p>
+      <ul>我是 ul 元素 1</ul>
+      <ul>我是 ul 元素 2</ul>
+    </li>
+    <li>
+      <h2>[attribute]</h2>
+      <p>选择带有 target 属性的所有元素。</p>
+      <a target="_parent">我是 a 元素，我有 target 属性</a>
+    </li>
+    <li>
+      <h2>[attribute=value]</h2>
+      <p>选择带有 target="_blank" 属性的所有元素。</p>
+      <a target="_blank">我是 a 元素，我 target="_blank" </a>
+    </li>
+    <li>
+      <h2>[attribute~=value]</h2>
+      <p>选择 title 属性包含单词 "flower" 的所有元素。（需要是单词，空格区分那种）</p>
+      <div title="hello flower">我的 title 中包含 flower</div>
+      <div title="hello door">我的 title 中不包含 flower</div>
+    </li>
+    <li>
+      <h2>[attribute|=value]</h2>
+      <p>选择 lang 属性值以 "en" 开头的所有元素。</p>
+      <div lang="en">我的 lang 属性以 "en" 开头。</div>
+    </li>
+    <li>
+      <h2>[attribute^=value]</h2>
+      <p>选择其 href 属性值以 "https" 开头的每个 a 元素。</p>
+      <a href="https://www.baidu.com">我的 href 属性为 https 开头</a>
+    </li>
+    <li>
+      <h2>[attribute$=value]</h2>
+      <p>选择其 href 属性以 ".pdf" 结尾的所有 a 元素。</p>
+      <a href="https://www.baidu.pdf">我的 href 属性为 .pdf 结尾</a>
+    </li>
+    <li>
+      <h2>[attribute*=value]</h2>
+      <p>选择其 href 属性值中包含 "abc" 子串的每个 a 元素。（测试貌似这个优先级最高）</p>
+      <a href="https://www.aaa.pdf">我的 href 属性包含 "aaa" 字符串</a>
+    </li>
+  </ul>
+</body>
+
+</html>
