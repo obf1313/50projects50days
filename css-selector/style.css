@@ -189,3 +189,34 @@ div>input:read-write {
 :target {
   background-color: rebeccapurple;
 }
+
+.after::after {
+  content: '大家好';
+}
+
+.before::before {
+  content: '大家好';
+}
+
+.p-first-letter::first-letter {
+  color: pink;
+}
+
+.first-line::first-line {
+  color: steelblue;
+}
+
+input::placeholder {
+  background-color: springgreen;
+}
+
+.my-input {
+  width: 200px;
+  height: 20px;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.my-input::selection {
+  background-color: pink;
+}

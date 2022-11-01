@@ -341,6 +341,45 @@
         </li>
       </ul>
     </li>
+    <li>
+      <h1>伪元素</h1>
+      <ul>
+        <li>
+          <h2>::after</h2>
+          <p>在每个 p 的内容之后插入内容。</p>
+          <div class="after">
+            <p>尾部加了：大家好</p>
+          </div>
+        </li>
+        <li>
+          <h2>::before</h2>
+          <p>在每个 p 的内容之前插入内容。</p>
+          <div class="before">
+            <p>首部加了：大家好</p>
+          </div>
+        </li>
+        <li>
+          <h2>::first-letter</h2>
+          <p>选择每个 p 元素的首字母。</p>
+          <p class="p-first-letter">一二三</p>
+        </li>
+        <li>
+          <h2>::first-line</h2>
+          <p>选择每个 p 元素的首行。</p>
+          <p class="first-line">我是第一行<br />我是第二行</p>
+        </li>
+        <li>
+          <h2>::placeholder</h2>
+          <p>选择已规定 "placeholder" 属性的 input 元素。</p>
+          <input type="text" placeholder="placeholder">
+        </li>
+        <li>
+          <h2>::selection</h2>
+          <p>选择用户已选取的元素部分。</p>
+          <input type="text" class="my-input" value="请选择我，别选择我">
+        </li>
+      </ul>
+    </li>
   </ul>
 </body>
 
