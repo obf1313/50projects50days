@@ -3,9 +3,11 @@ codes[0].focus()
 codes.forEach((code, index) => {
   code.addEventListener('keydown', e => {
     if (e.key >= 0 && e.key <= 9) {
-      // 好神奇，这句代码加了就不会一个 input 出现多个了，没理解
+      // 下一次点击现将上一次的置为空（我猜我懂了），应该就是 keydown 事件会在 value 发生改变之前调用
       codes[index].value = ''
-      setTimeout(() => codes[index + 1].focus(), 10)
+      if (index < codes.length - 1) {
+        setTimeout(() => codes[index + 1].focus(), 10)
+      }
     } else if (e.key === 'Backspace') {
       if (index > 0) {
         setTimeout(() => codes[index - 1].focus(), 10)
