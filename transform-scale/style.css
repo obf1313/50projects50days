@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  zoom: 0.5;
+}
+.left {
+  width: 100px;
+  height: 500px;
+  background-color: aliceblue;
+  font-size: 20px;
+  color: brown;
+  padding: 10px;
+}
+.right {
+  flex: 1;
+  height: 500px;
+  background-color: blanchedalmond;
+  font-size: 24px;
+  color: steelblue;
+  padding: 10px;
+}
