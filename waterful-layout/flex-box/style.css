@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.column1,
+.column2 {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: calc(50% - 3.5px);
+  margin-right: 7px;
+}
+
+.box {
+  background-color: lightcoral;
+  margin-bottom: 7px;
+  break-inside: avoid;
+}
