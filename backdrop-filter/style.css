@@ -1,0 +1,33 @@
+.title {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.container {
+  width: 500px;
+  height: 400px;
+  background-color: aqua;
+  background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.JRkw2IbWxTvgpZLVDDRz6QHaEo?pid=ImgDet&rs=1');
+  background-size: 100% 100%;
+  object-fit: cover;
+  filter: blur(10px);
+}
+
+.container-backdrop {
+  width: 500px;
+  height: 400px;
+  background-color: aqua;
+  background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.JRkw2IbWxTvgpZLVDDRz6QHaEo?pid=ImgDet&rs=1');
+  background-size: 100% 100%;
+  object-fit: cover;
+}
+
+.child {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.child-backdrop {
+  height: 400px;
+  backdrop-filter: blur(10px);
+}
