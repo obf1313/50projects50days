@@ -1,0 +1,71 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+}
+
+:root {
+  --w: 30px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(var(--w) * 5);
+  width: calc(var(--w) * 5);
+  padding: var(--w);
+  border-radius: calc(var(--w) / 2);
+  box-shadow: 0 12px 20px 6px rgb(104 112 118 / 0.2);
+  /* 让转换的子元素保留 3D 转换 */
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  transform: rotateX(40deg) rotateZ(40deg);
+}
+
+.square {
+  height: var(--w);
+  width: var(--w);
+  background-color: rgba(207, 52, 40, 1);
+  position: relative;
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  transform: translateZ(var(--w));
+  box-shadow: calc(var(--w) * 3) calc(var(--w) * 3) 15px rgba(0, 0, 0, 0.2);
+  animation: beating 1s infinite;
+  /* 还有这种写法哈，学废了 */
+  animation-delay: calc(0.05s * var(--d));
+}
+
+@keyframes beating {
+  50% {
+    transform: translateZ(calc(var(--w) / 2));
+  }
+}
+
+.square:hover {
+  cursor: pointer;
+  filter: brightness(2.1);
+}
+
+.square::after,
+.square::before {
+  content: '';
+  position: absolute;
+  height: var(--w);
+  width: var(--w);
+  left: 0;
+  top: 0;
+}
+
+.square::before {
+  background-color: rgb(56, 35, 35);
+  transform: rotateY(-90deg);
+  transform-origin: right center;
+}
+
+.square::after {
+  background-color: rgb(80, 39, 36);
+  transform: rotateX(90deg);
+  transform-origin: right bottom;
+}
