@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @keyframes a {
+        from {
+          transform: translateX(300px);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+      .parent {
+        display: flex;
+        width: 300px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .son {
+        width: auto;
+        transform: translateX(300px);
+        animation-name: a;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="son">到付件科技师范可乐的上架方口令三等奖到</div>
+    </div>
+    <script>
+      const parent = document.getElementsByClassName('parent')[0]
+      const son = document.getElementsByClassName('son')[0]
+      const parentWidth = parent.offsetWidth
+      const sonWidth = son.scrollWidth
+    </script>
+  </body>
+</html>
