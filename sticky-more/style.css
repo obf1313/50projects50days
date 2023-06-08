@@ -1,0 +1,28 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  width: 100%;
+  height: 800px;
+  background-color: lightblue;
+}
+
+.no-sticky {
+  width: 100%;
+  height: 30px;
+  background-color: lightpink;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.bottom {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
