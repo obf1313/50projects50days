@@ -136,18 +136,5 @@ const convertServerMenuToSideMenu = (serverMenus, parentId, appName, clinentMenu
       }
     })
 }
-function treeToArray(list) {
-  var newArr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : []
-  list.forEach(function (item) {
-    var children = item.children
-
-    if (children && children.length) {
-      treeToArray(children, newArr) // delete item.children
-    }
-
-    newArr.push(item)
-  })
-  return newArr
-}
 const a = convertServerMenuToSideMenu(data, 0, 'app-admin', [], 8, ['market-center-app', 'app-mirror'])
 console.log(a)
