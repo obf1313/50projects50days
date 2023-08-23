@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item {
+  align-self: self-end;
+}
+
+.item:nth-child(2n) {
+  align-self: self-start;
+}
