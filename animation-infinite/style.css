@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+@keyframes trans-test {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.box {
+  display: flex;
+  height: 100px;
+  background-color: pink;
+}
+
+.box-small {
+  width: 200px;
+  height: 100px;
+  flex-shrink: 0;
+  background-color: blue;
+}
+
+.box-small:nth-child(1) {
+  background-color: red;
+}
+
+.box-small:nth-child(2) {
+  background-color: pink;
+}
+
+.box-small:nth-child(3) {
+  background-color: green;
+}
+
+.animation-test {
+  width: max-content;
+  display: flex;
+  animation: trans-test 6s linear;
+}
