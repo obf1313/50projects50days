@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>获取手机型号、尝试打开应用市场</title>
+  </head>
+  <body>
+    <script>
+      const getApp = () => {
+        location.href = 'market://details?id=com.sisyphe.mobile'
+      }
+    </script>
+    <button onclick="getApp()">下载</button>
+    <script>
+      const getMobileModel = () => {
+        const ua = navigator.userAgent.toLowerCase()
+        return ua
+      }
+      const ele = document.createElement('div')
+      ele.innerText = getMobileModel()
+      document.body.appendChild(ele)
+    </script>
+  </body>
+</html>
