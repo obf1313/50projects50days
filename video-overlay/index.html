@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>视频重叠播放测试</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 400px;
+        height: 400px;
+        background-color: pink;
+      }
+      .back-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        filter: blur(5px);
+      }
+      .front-video {
+        width: 400px;
+        object-fit: contain;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" class="back-video" autoplay muted></video>
+      <video
+        src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+        class="front-video"
+        autoplay
+        muted
+        controls></video>
+    </div>
+  </body>
+</html>
