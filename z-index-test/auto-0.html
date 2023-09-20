@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .red,
+      .blue,
+      .green {
+        width: 200px;
+        height: 200px;
+      }
+
+      .red {
+        position: absolute;
+        z-index: 0;
+        top: 100px;
+        left: 100px;
+        background: #ff0000;
+      }
+
+      .blue {
+        position: absolute;
+        z-index: auto;
+        top: 40px;
+        left: 40px;
+        background: #0000ff;
+      }
+
+      .green {
+        position: absolute;
+        top: 160px;
+        left: 160px;
+        background: greenyellow;
+      }
+
+      .test {
+        width: 140px;
+        height: 140px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        background: grey;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blue">
+      index-auto
+      <!-- https://juejin.cn/post/6995006409423192078 -->
+      <!-- 不会创建层叠上下文 -->
+      <div class="test"></div>
+    </div>
+    <div class="red">
+      index-0
+      <!-- 会创建层叠上下文 -->
+      <!-- <div class="test"></div> -->
+    </div>
+    <div class="green">不设置z-index</div>
+  </body>
+</html>
