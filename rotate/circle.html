@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    @keyframes circle {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(365deg);
+      }
+    }
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      color: #fff;
+      border-radius: 50%;
+      animation: circle 2s;
+    }
+  </style>
+</head>
+<body>
+  <div id="a" class="circle">a</div>
+  <div id="b" class="circle">b</div>
+  <div id="c" class="circle">c</div>
+</body>
+</html>

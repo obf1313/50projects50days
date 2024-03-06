@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .planet-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .planet {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.5s ease; /* 添加 transition 属性 */
+    }
+  </style>
+</head>
+<body>
+  <div class="planet-container" id="planetContainer"></div>
+
+  <script>
+    const planetContainer = document.getElementById('planetContainer');
+    const planetCount = 3; // 可以动态设定行星个数
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    let angle = 0;
+    const radiusX = 150; // 横向半径
+    const radiusY = 100; // 纵向半径
+
+    function createPlanet(id) {
+      const planet = document.createElement('div');
+      planet.className = 'planet';
+      planet.id = `planet${id}`;
+      planet.innerText = String.fromCharCode(65 + id); // 使用字母 A, B, C, ...
+
+      planetContainer.appendChild(planet);
+    }
+
+    function movePlanets() {
+      const angleIncrement = (Math.PI * 2) / planetCount;
+
+      for (let i = 0; i < planetCount; i++) {
+        const currentAngle = angle + i * angleIncrement;
+        const x = centerX + Math.cos(currentAngle) * radiusX;
+        const y = centerY + Math.sin(currentAngle) * radiusY;
+
+        const planet = document.getElementById(`planet${i}`);
+        if (!planet) {
+          createPlanet(i);
+        }
+
+        planet.style.transform = `translate3d(${x - 25}px, ${y - 25}px, 0)`;
+      }
+
+      angle += 0.01; // 控制运动速度
+    }
+
+    setInterval(movePlanets, 16); // 大约每秒60帧
+
+  </script>
+</body>
+</html>
