@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="playerContainer">
+      <div id="player">
+        <div>我是一个视频</div>
+        <a
+          target="_blank"
+          href="https://developer.chrome.com/docs/web-platform/document-picture-in-picture?hl=zh-cn"
+          >参考链接：</a
+        >
+        <video id="video" src="./video/video.mp4" controls></video>
+      </div>
+    </div>
+    <button id="pipButton">Open Picture-in-Picture window</button>
+    <script>
+      pipButton.addEventListener("click", async () => {
+        const player = document.querySelector("#player");
+        // Open a Picture-in-Picture window whose size is
+        // the same as the player's.
+        const pipWindow = await documentPictureInPicture.requestWindow({
+          width: player.clientWidth,
+          height: player.clientHeight,
+        });
+        // 请注意是 move
+        // Move the player to the Picture-in-Picture window.
+        pipWindow.document.body.append(player);
+      });
+    </script>
+  </body>
+</html>
