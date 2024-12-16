@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>框选截图并下载</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 2000px; /* 模拟长页面 */
+        user-select: none;
+      }
+      .selection-box {
+        position: absolute;
+        border: 2px dashed red;
+        background-color: rgba(255, 0, 0, 0.2);
+        pointer-events: none;
+      }
+      button {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="screenshotBtn">开始框选截图</button>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: blueviolet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: violet">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <div style="background-color: aqua">放到数据库恢复</div>
+    <div style="background-color: beige">放到数据库恢复</div>
+    <div>放到数据库恢复</div>
+    <div style="background-color: brown">放到数据库恢复</div>
+    <script>
+      let isSelecting = false;
+      let startX = 0,
+        startY = 0;
+      let selectionBox = null;
+
+      const screenshotBtn = document.getElementById("screenshotBtn");
+      screenshotBtn.addEventListener("click", () => {
+        isSelecting = true;
+        screenshotBtn.style.display = "none"; // 隐藏按钮
+        document.body.style.cursor = "crosshair";
+
+        document.addEventListener("mousedown", startSelection);
+        document.addEventListener("mousemove", updateSelection);
+        document.addEventListener("mouseup", endSelection);
+      });
+
+      function startSelection(e) {
+        if (!isSelecting) return;
+
+        // 记录起始点（包含页面滚动的偏移量）
+        startX = e.pageX;
+        startY = e.pageY;
+
+        selectionBox = document.createElement("div");
+        selectionBox.className = "selection-box";
+        selectionBox.style.left = `${startX}px`;
+        selectionBox.style.top = `${startY}px`;
+        document.body.appendChild(selectionBox);
+      }
+
+      function updateSelection(e) {
+        if (!isSelecting || !selectionBox) return;
+
+        // 计算宽高（包含滚动偏移）
+        const currentX = e.pageX;
+        const currentY = e.pageY;
+        const width = Math.abs(currentX - startX);
+        const height = Math.abs(currentY - startY);
+
+        // 更新框选框位置和尺寸
+        selectionBox.style.left = `${Math.min(startX, currentX)}px`;
+        selectionBox.style.top = `${Math.min(startY, currentY)}px`;
+        selectionBox.style.width = `${width}px`;
+        selectionBox.style.height = `${height}px`;
+      }
+
+      function endSelection(e) {
+        if (!isSelecting) return;
+
+        isSelecting = false;
+        document.body.style.cursor = "default";
+
+        const rect = selectionBox.getBoundingClientRect();
+
+        // 计算实际截图区域的起始点（包含页面滚动的偏移量）
+        const scrollLeft =
+          window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        const actualX = rect.left + scrollLeft;
+        const actualY = rect.top + scrollTop;
+        const actualWidth = rect.width;
+        const actualHeight = rect.height;
+
+        // 暂时移除框选框
+        selectionBox.style.display = "none";
+
+        html2canvas(document.body).then((canvas) => {
+          const croppedCanvas = document.createElement("canvas");
+          const context = croppedCanvas.getContext("2d");
+          croppedCanvas.width = actualWidth;
+          croppedCanvas.height = actualHeight;
+
+          context.drawImage(
+            canvas,
+            actualX,
+            actualY,
+            actualWidth,
+            actualHeight, // 截取的起点和尺寸
+            0,
+            0,
+            actualWidth,
+            actualHeight // 画布起点和尺寸
+          );
+
+          const base64Image = croppedCanvas.toDataURL("image/png");
+          downloadImage(base64Image, "screenshot.png");
+
+          // 恢复框选框和按钮
+          selectionBox.style.display = "block";
+          screenshotBtn.style.display = "block";
+          document.body.removeChild(selectionBox);
+        });
+
+        document.removeEventListener("mousedown", startSelection);
+        document.removeEventListener("mousemove", updateSelection);
+        document.removeEventListener("mouseup", endSelection);
+      }
+
+      function downloadImage(dataUrl, fileName) {
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    </script>
+  </body>
+</html>
