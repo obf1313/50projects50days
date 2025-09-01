@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ...existing code... -->
+    <body>
+      <div style="width: 100%; display: flex">
+        <div style="width: 50px">left</div>
+        <div style="flex: 1">
+          <div
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
+          >
+            我只是测试文本我只是测试文本我只是测试文本我只是测试文本我只是测试文本我只是测试文本
+          </div>
+        </div>
+        <div style="width: 60px">right</div>
+      </div>
+      <script>
+        // 替换为你的 ws 服务地址
+        const wsUrl = "ws://localhost:13000";
+        const ws = new WebSocket(wsUrl);
+
+        ws.onopen = function () {
+          console.log("WebSocket 连接成功");
+          ws.send("ping");
+        };
+
+        ws.onmessage = function (event) {
+          console.log("收到消息:", event.data);
+        };
+
+        ws.onerror = function (error) {
+          console.error("WebSocket 发生错误:", error);
+        };
+
+        ws.onclose = function () {
+          console.log("WebSocket 连接关闭");
+        };
+      </script>
+    </body>
+    <!-- ...existing code... -->
+  </body>
+</html>
