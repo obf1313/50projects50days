@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>P5 风格 — 预告状 抽卡（空格触发）</title>
+    <style>
+      /* 基础 */
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        background: #0a0a0a;
+        overflow: hidden;
+        font-family: "Noto Sans SC", "Microsoft Yahei", Arial, sans-serif;
+      }
+      /* P5 同心圆背景 */
+      .p5-target {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.95;
+
+        background: radial-gradient(
+          circle at center,
+          rgba(208, 0, 0, 1) 0% 14%,
+          rgba(0, 0, 0, 1) 14% 28%,
+          rgba(208, 0, 0, 1) 28% 42%,
+          rgba(0, 0, 0, 1) 42% 56%,
+          rgba(208, 0, 0, 1) 56% 70%,
+          rgba(0, 0, 0, 1) 70% 100%
+        );
+
+        filter: url(#wobble);
+      }
+
+      /* FX */
+      .screen-split {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #d00000;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+        animation: splitIn 0.35s ease-out forwards;
+        z-index: 20;
+        pointer-events: none;
+      }
+      @keyframes splitIn {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      .fx-star {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        z-index: 30;
+        pointer-events: none;
+        background: white;
+        -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2l3 7h7l-5.5 4.5 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg>')
+          center/contain no-repeat;
+        animation: starPop 0.6s ease-out forwards;
+      }
+      @keyframes starPop {
+        0% {
+          transform: scale(0) rotate(-30deg);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.3) rotate(10deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) rotate(0);
+          opacity: 1;
+        }
+      }
+
+      .speedlines {
+        position: fixed;
+        inset: 0;
+        z-index: 15;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          135deg,
+          transparent 0 10px,
+          rgba(255, 255, 255, 0.08) 10px 20px
+        );
+        animation: speedMove 0.3s linear;
+      }
+      @keyframes speedMove {
+        0% {
+          transform: translateX(-60px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      /* 预告状容器 */
+      .ransom-container {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vh;
+        max-width: 1300px;
+        z-index: 40;
+        pointer-events: none;
+      }
+      .ransom-container.shake {
+        animation: shake 0.6s ease-in-out;
+      }
+      @keyframes shake {
+        0% {
+          transform: translate(-50%, -50%) rotate(-1deg);
+        }
+        20% {
+          transform: translate(-50%, -50%) rotate(1deg);
+        }
+        40% {
+          transform: translate(-50%, -50%) rotate(-0.6deg);
+        }
+        60% {
+          transform: translate(-50%, -50%) rotate(0.6deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+      }
+
+      /* 单片纸条 */
+      .paper-piece {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        min-height: 55px;
+        padding: 6px 10px;
+        box-sizing: border-box;
+        font-weight: 800;
+        color: #0a0a0a;
+        text-align: center;
+        line-height: 1;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+        transform-origin: center center;
+        border: 2px solid rgba(0, 0, 0, 0.35);
+        background-clip: padding-box;
+        opacity: 0;
+        user-select: none;
+      }
+      .paper-piece.p-white {
+        background: #fff;
+        color: #0a0a0a;
+      }
+      .paper-piece.p-black {
+        background: #111;
+        color: #fff;
+      }
+      .paper-piece.p-grid {
+        background-image: linear-gradient(45deg, #eee 1px, transparent 1px),
+          linear-gradient(-45deg, #eee 1px, transparent 1px);
+        background-size: 8px 8px;
+        color: #0a0a0a;
+      }
+      .paper-piece.p-red {
+        background: #d00000;
+        color: #fff;
+      }
+
+      @keyframes pieceIn {
+        0% {
+          transform: translateY(-80px) rotate(-30deg) scale(0.6);
+          opacity: 0;
+        }
+        60% {
+          transform: translateY(10px) rotate(8deg) scale(1.08);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0) rotate(0deg) scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* 触发提示（可隐藏） */
+      .hint {
+        position: fixed;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        z-index: 45;
+        color: #fff;
+        font-weight: 700;
+        font-size: 24px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        pointer-events: none;
+      }
+
+      /* 响应式调整字大小 */
+      @media (max-width: 420px) {
+        .paper-piece {
+          min-width: 28px;
+          min-height: 30px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 背景占位（始终存在能提升视觉） -->
+    <div class="p5-target"></div>
+    <div class="hint">按 空格 或 点击 屏幕 抽取 幸运儿</div>
+    <svg width="0" height="0">
+      <filter id="wobble">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.01 0.03"
+          numOctaves="2"
+          result="noise"
+        />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+      </filter>
+    </svg>
+
+    <script>
+      // ========== 抽卡内容 ==========
+      const pool = [
+        "书博会书博会书博会书博会书博会书博会书博会书博会书博会书博会书博会书博会",
+        "考勤系统考勤系统考勤系统考勤系统考勤系统考勤系统考勤系统考勤系统考勤系统考勤系统",
+        "记求不到了记求不到了记求不到了记求不到了记求不到了记求不到了记求不到了记求不到了",
+        "记求不到了2记求不到了2记求不到了2记求不到了2记求不到了2记求不到了2记求不到了2记求不到了2",
+        "记求不到了3记求不到了3记求不到了3记求不到了3记求不到了3记求不到了3记求不到了3记求不到了3",
+        "领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖领导夸奖",
+      ];
+      let remaining = [...pool];
+
+      // ========== FX 特效（刀锋 + 速度线 + 星星） ==========
+      function createFX() {
+        const speed = document.createElement("div");
+        speed.className = "speedlines";
+        document.body.appendChild(speed);
+        setTimeout(() => speed.remove(), 300);
+
+        const blade = document.createElement("div");
+        blade.className = "screen-split";
+        document.body.appendChild(blade);
+        setTimeout(() => blade.remove(), 350);
+
+        const star = document.createElement("div");
+        star.className = "fx-star";
+        star.style.left = window.innerWidth / 2 - 30 + "px";
+        star.style.top = window.innerHeight / 2 - 30 + "px";
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 600);
+      }
+
+      // ========== 文本拆字 ==========
+      function splitToChars(text) {
+        return Array.from(text.replace(/\s+/g, ""));
+      }
+
+      // ========== 予告状排版（完整版） ==========
+      function showRansom(text) {
+        const chars = splitToChars(text);
+        const total = chars.length;
+
+        // ---- 动态列数：按屏幕宽度 ----
+        const containerWidth = window.innerWidth * 0.75;
+        const pieceWidth = 75; // 每张纸条的占位
+        const cols = Math.max(10, Math.floor(containerWidth / pieceWidth));
+
+        // ---- 行数自动根据字符量决定 ----
+        const rows = Math.ceil(total / cols);
+
+        const gapX = 78;
+        const gapY = 95;
+
+        const container = document.createElement("div");
+        container.className = "ransom-container shake";
+        document.body.appendChild(container);
+
+        // ---- 生成纸条 ----
+        chars.forEach((ch, i) => {
+          const piece = document.createElement("div");
+          piece.className = "paper-piece";
+
+          // 纸条风格
+          const r = Math.random();
+          if (r < 0.15) piece.classList.add("p-red");
+          else if (r < 0.45) piece.classList.add("p-grid");
+          else if (r < 0.75) piece.classList.add("p-white");
+          else piece.classList.add("p-black");
+
+          piece.innerText = ch;
+
+          // ---- 计算位置（核心） ----
+          const col = i % cols;
+          const row = Math.floor(i / cols);
+
+          let x = (col - cols / 2) * gapX;
+          let y = (row - rows / 2) * gapY;
+
+          // 随机抖动（让布局不规则）
+          x += (Math.random() - 0.5) * 35;
+          y += (Math.random() - 0.5) * 35;
+
+          piece.style.left = `calc(50% + ${x}px)`;
+          piece.style.top = `calc(50% + ${y}px)`;
+
+          // ---- 角度随机化 ----
+          const rot = (Math.random() - 0.5) * 40;
+          piece.style.transform = `translate(-50%, -50%) rotate(${rot}deg) scale(0.9)`;
+
+          // ---- 字号随机 ----
+          const scale = 1 + Math.random() * 0.3;
+          piece.style.fontSize = `${26 * scale}px`;
+
+          // ---- 入场动画错峰 ----
+          piece.style.animation = `pieceIn 0.6s cubic-bezier(.2,.9,.3,1) ${
+            i * 35
+          }ms both`;
+
+          container.appendChild(piece);
+        });
+
+        // 移除抖动
+        setTimeout(() => container.classList.remove("shake"), 1200);
+
+        // 自动淡出
+        // TODO: 改成在下一次抽奖的时候移除
+        setTimeout(() => {
+          container.style.transition = "opacity 250ms ease";
+          container.style.opacity = "0";
+          setTimeout(() => container.remove(), 300);
+        }, 15000);
+      }
+
+      // ========== 抽一张 ==========
+      function drawOne() {
+        if (remaining.length === 0) {
+          createFX();
+          setTimeout(() => {
+            const c = document.createElement("div");
+            c.className = "ransom-container";
+            const big = document.createElement("div");
+            big.className = "paper-piece p-red";
+            big.style.left = "50%";
+            big.style.top = "50%";
+            big.style.minWidth = "380px";
+            big.style.fontSize = "34px";
+            big.style.padding = "26px";
+            big.innerText = "ALL DONE";
+            c.appendChild(big);
+            document.body.appendChild(c);
+            setTimeout(() => {
+              c.style.opacity = 0;
+              setTimeout(() => c.remove(), 300);
+            }, 1600);
+          }, 300);
+          return;
+        }
+
+        createFX();
+
+        setTimeout(() => {
+          const index = Math.floor(Math.random() * remaining.length);
+          const cardText = remaining[index];
+          remaining.splice(index, 1);
+          showRansom(cardText);
+        }, 500);
+      }
+
+      // ========== 绑定：空格 + 点击 ==========
+      window.addEventListener("keydown", (e) => {
+        if (e.code === "Space" || e.key === " ") {
+          e.preventDefault();
+          drawOne();
+        }
+      });
+      window.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        drawOne();
+      });
+    </script>
+  </body>
+</html>
