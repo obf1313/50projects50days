@@ -339,12 +339,11 @@
         setTimeout(() => container.classList.remove("shake"), 1200);
 
         // 自动淡出
-        // TODO: 改成在下一次抽奖的时候移除
         setTimeout(() => {
           container.style.transition = "opacity 250ms ease";
           container.style.opacity = "0";
           setTimeout(() => container.remove(), 300);
-        }, 15000);
+        }, 5000);
       }
 
       // ========== 抽一张 ==========

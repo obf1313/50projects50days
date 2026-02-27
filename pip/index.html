@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小窗播放示例</title>
+  </head>
+  <body>
+    <h1>视频小窗播放示例</h1>
+    <video id="video" width="600" controls>
+      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <button id="pipButton">启用小窗播放</button>
+
+    <script>
+      const video = document.getElementById("video");
+      const pipButton = document.getElementById("pipButton");
+
+      // 检查浏览器是否支持 PiP
+      if (!document.pictureInPictureEnabled) {
+        pipButton.disabled = true;
+        alert("当前浏览器不支持画中画功能");
+      }
+
+      // 监听点击事件，触发小窗播放
+      pipButton.addEventListener("click", async () => {
+        try {
+          // 如果视频不在画中画模式，则进入
+          if (!document.pictureInPictureElement) {
+            await video.requestPictureInPicture();
+          } else {
+            // 如果已经在画中画模式，则退出
+            await document.exitPictureInPicture();
+          }
+        } catch (error) {
+          console.error("切换小窗播放失败:", error);
+        }
+      });
+
+      // 监听进入画中画模式的事件
+      video.addEventListener("enterpictureinpicture", () => {
+        console.log("视频已进入小窗播放");
+      });
+
+      // 监听退出画中画模式的事件
+      video.addEventListener("leavepictureinpicture", () => {
+        console.log("视频已退出小窗播放");
+      });
+    </script>
+  </body>
+</html>
